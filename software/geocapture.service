@@ -1,0 +1,26 @@
+
+# systemd unit for the capture daemon. Install with:
+#   sudo cp geocapture.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now geocapture
+#   journalctl -fu geocapture
+# Edit User= and the paths if the code does not live in /home/david/geoph, or
+# ExecStart to /usr/bin/python3 if you skipped the venv (CSV logging only).
+
+[Unit]
+Description=EG-4.5 geophone capture: ADS1220 -> disk + TCP stream
+After=network-online.target time-sync.target
+Wants=network-online.target time-sync.target
+
+[Service]
+User=david
+WorkingDirectory=/home/david/geoph
+ExecStart=/home/david/geoph/venv/bin/python /home/david/geoph/geocapture.py
+Restart=always
+RestartSec=5
+Nice=-10
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target
