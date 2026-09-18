@@ -11,6 +11,9 @@ If you are interested in having a home seismograph, I highly recommend just gett
 
 If you are a DIYer and like a challenge, and want to build a seismograph from scratch that can detect quakes across the globe with a very similar response that a raspberry shake has, this project is for you.
 
+Future plans: 
+I want to update this with a $200 native 2hz geophone. Will be ordering that soon and posting a revision here. Should be sensitive to much lower frequencies these 4.5hz geophones miss. 
+
 ![The assembled instrument: geophone, main board, interface board, Pi](images/assembled.jpg)
 
 | | |
