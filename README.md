@@ -16,9 +16,9 @@ I want to update this with a $200 native 2hz geophone. Will be ordering that soo
 
 ![The assembled instrument: geophone, main board, interface board, Pi](images/assembled.jpg)
 
-![Same event, same minutes: this instrument on the left, a commercial seismograph on the same property on the right](images/comparison.png)
+![Same event, same minutes: this instrument on the left, a Raspberry Shake on the right](images/comparison.png)
 
-*Same event, same minutes. Left: this instrument, 0.5–2 Hz, trace and spectrogram. Right: a commercial seismograph on the same property.*
+*Same event, same minutes. Left: this instrument, 0.5–2 Hz, trace and spectrogram. Right: a Raspberry Shake RS1D on the same property.*
 
 | | |
 |---|---|
