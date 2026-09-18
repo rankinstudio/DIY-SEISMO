@@ -19,7 +19,8 @@ Two boards on ElectroCookie solderable breadboards:
 | Output rate | 330 SPS at the ADC, logged at 165 SPS |
 
 **`eg45-board.html`** is the full build document (drawings, schematics, wiring
-tables, assembly stages, notes) — open it in a browser. This file is the short
+tables, assembly stages, notes) — [rendered here](https://rankinstudio.github.io/DIY-SEISMO/hardware/eg45-board.html),
+or download it and open it in a browser. This file is the short
 version: parts, assembly and the test sequence.
 
 ## Files

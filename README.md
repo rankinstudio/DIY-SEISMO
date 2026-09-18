@@ -18,6 +18,8 @@ logs it continuously in nm/s and streams it live to a PC.
 | Supply | 5 V from the Pi, 19 mA per rail |
 | Output | miniSEED on the Pi's SD card, float32 stream over TCP |
 
+**Build document, rendered:** https://rankinstudio.github.io/DIY-SEISMO/hardware/eg45-board.html
+
 ## How it works
 
 A geophone is a magnet on a spring inside a coil. Above its natural frequency
@@ -34,7 +36,7 @@ notches mains, blocks DC, decimates and timestamps in software.
 
 | folder | what |
 |---|---|
-| [`hardware/`](hardware/) | **Start here.** [`eg45-board.html`](hardware/eg45-board.html) is the build document — schematics, board drawings, hole-by-hole placement, jumper tables, assembly stages, notes. [`README.md`](hardware/README.md) is the short version with the ordering list and every cold and powered test. Also the Pi-side ADS1220 driver and the DigiKey order as placed. |
+| [`hardware/`](hardware/) | **Start here.** [**`eg45-board.html`**](https://rankinstudio.github.io/DIY-SEISMO/hardware/eg45-board.html) is the build document (that link renders it; GitHub's file view shows the source) — schematics, board drawings, hole-by-hole placement, jumper tables, assembly stages, notes. [`README.md`](hardware/README.md) is the short version with the ordering list and every cold and powered test. Also the Pi-side ADS1220 driver and the DigiKey order as placed. |
 | [`software/`](software/) | Capture daemon for the Pi (logs to disk and streams; systemd unit included), the live client and plotting tools for the PC, and the install steps. |
 | `images/` | Photos. |
 
