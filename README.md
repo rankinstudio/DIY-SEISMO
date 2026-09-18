@@ -5,6 +5,12 @@ Raspberry Pi. The board flattens a 4.5 Hz EG-4.5-II geophone down to
 **0.31 Hz** — low enough to see teleseisms — and a 24-bit ADS1220 on the Pi
 logs it continuously in nm/s and streams it live to a PC.
 
+I tried to build a bandwidth extended 4.5hz seismograph a few years back and failed. Got some help on some circuit forums but never got it working right. I'm a DIYer and enjoy a good challenge and assembling things. This project is inspired by the raspberry shake. I have no idea how they built their pi-hat to get the bandwidth extension they have. I was mostly just interested in seeing if I could figure it out and build one myself. I used Claude + LTSpice heavily to pull this off.
+
+If you are interested in having a home seismograph, I highly recommend just getting a raspberry shake. They are plug-n-play and work amazingly well. I have two of them, one I run in AZ and one I run in UT. 
+
+If you are a DIYer and like a challenge, and want to build a seismograph from scratch that can detect quakes across the globe with a very similar response that a raspberry shake has, this project is for you.
+
 ![The assembled instrument: geophone, main board, interface board, Pi](images/assembled.jpg)
 
 | | |
