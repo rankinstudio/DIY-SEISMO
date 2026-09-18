@@ -1,6 +1,6 @@
 # DIY SEISMO
 
-A home seismograph built from a $30 geophone, two hand-soldered boards and a
+A home DIY seismograph built from a $30 geophone, two hand-soldered boards and a
 Raspberry Pi. The board flattens a 4.5 Hz EG-4.5-II geophone down to
 **0.31 Hz** — low enough to see teleseisms — and a 24-bit ADS1220 on the Pi
 logs it continuously in nm/s and streams it live to a PC.
