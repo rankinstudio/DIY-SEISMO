@@ -197,6 +197,7 @@ def unit_for(peak_nms):
 
 
 plt.style.use('dark_background')
+matplotlib.rcParams['toolbar'] = 'None'          # the window is all plot
 fig, (ax_tr, ax_sp) = plt.subplots(2, 1, figsize=(opts['figW'], opts['figH']), sharex=True)
 fig.canvas.manager.set_window_title("geoclient  %s:%d" % (HOST, PORT))
 rx = Receiver()
@@ -335,7 +336,9 @@ def _animate():
     ax_sp.tick_params(axis='x', labelsize=8)
 
     if not _state['laid_out']:
-        fig.tight_layout(pad=1)
+        # once the labels exist: fit the axes to them, and butt the spectrogram up
+        # against the trace (sharex hides the trace's own tick labels anyway)
+        fig.tight_layout(pad=0.3, h_pad=0.2)
         _state['laid_out'] = True
 
 
