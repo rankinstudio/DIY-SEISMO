@@ -38,7 +38,7 @@ Front end (see eg45-board.html, "Interfacing to the Raspberry Pi"):
 ADS1220 configuration:
 
     reg0 0x05  AIN0/AIN1, gain 4, PGA BYPASSED
-    reg1 0x84  330 SPS, normal mode, continuous conversion
+    reg1 0x74  350 SPS, TURBO mode, continuous conversion (was 0x84, normal 330)
     reg2 0x00  internal 2.048 V reference, 50/60 Hz FIR off
     reg3 0x00
 
@@ -51,6 +51,12 @@ against a -0.1 to 3.4 V allowance.
 The 50/60 Hz FIR is off because it only exists at 20 SPS, and 20 SPS gives a
 10 Hz Nyquist -- useless for a 0-40 Hz instrument. Mains is removed digitally
 instead; see mains_notch below.
+
+Turbo 350 SPS since 2026-09-29. Measured on the CMG-3T board (same part,
+inputs shorted inside the chip): normal mode at 330 SPS gives outputs on a
+coarse 84-count ladder, ~5x the noise of turbo at the same rate. The geophone
+chain's flat 2 nm/s/rtHz ADC floor was that limit. Turbo 350 keeps the
+alias arithmetic below (140 Hz still under the 175 Hz Nyquist).
 
 330 SPS, not 175. Both this part and the ADS1219 use a linear-phase FIR that
 settles in a single cycle, so the anti-alias shape is sinc1 -- notches at
@@ -119,10 +125,10 @@ RDATA     = 0x10
 RREG      = 0x20        # 0x20 | (reg << 2) | (n - 1)
 WREG      = 0x40        # 0x40 | (reg << 2) | (n - 1)
 
-CONFIG = (0x05, 0x84, 0x00, 0x00)
+CONFIG = (0x05, 0x74, 0x00, 0x00)
 
 # ------------------------------------------------------------ calibration ---
-FS         = 330.0          # SPS, must match reg1
+FS         = 350.0          # SPS, must match reg1 (turbo 350)
 GAIN       = 4              # must match reg0
 VREF       = 2.048          # internal reference
 DIV_GAIN   = 4.99e3 / (4.99e3 + 10e3)   # 0.33289, the level shifter
@@ -132,8 +138,8 @@ VOLTS_PER_COUNT = (VREF / GAIN) / 2 ** 23           # 6.1035e-08 V
 MPS_PER_COUNT   = VOLTS_PER_COUNT / (SENS * DIV_GAIN)   # 1.4103e-10 m/s
 FULL_SCALE_MPS  = (VREF / GAIN) / (SENS * DIV_GAIN)     # 1.18 mm/s (unchanged)
 
-# Log rate. The converter always runs at FS (330 SPS); set DECIMATE to drop
-# the logged rate by an integer factor. 2 gives 165 SPS. Leave at 1 for 330.
+# Log rate. The converter always runs at FS (350 SPS); set DECIMATE to drop
+# the logged rate by an integer factor. 2 gives 175 SPS. Leave at 1 for 350.
 DECIMATE = 2
 
 # Pi header pin numbers. START and RESET are None because the 16-pin module
