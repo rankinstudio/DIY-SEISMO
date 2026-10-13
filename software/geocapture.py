@@ -360,10 +360,11 @@ class Broadcaster:
                 return
             conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             with self.lock:
-                backlog = list(self.history) if self.history else []
-                q = queue.Queue(maxsize=len(backlog) + 120)
-                for frame in backlog:
-                    q.put_nowait(frame)
+                # the whole replay as one buffer, one sendall: an hour sent frame by frame
+                # (3600 Python sends a port) starved the sampling loop of the GIL
+                q = queue.Queue(maxsize=121)
+                if self.history:
+                    q.put_nowait(b''.join(self.history))
                 self.clients.append((conn, addr, q))
             threading.Thread(target=self._send, args=(conn, addr, q), daemon=True).start()
             log("client %s:%d connected (%d total)" % (addr[0], addr[1], len(self.clients)))
